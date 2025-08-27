@@ -1,4 +1,0 @@
-[core]
-    remote = localstore
-['remote "localstore"']
-    url = C:\Users\satya\AppData\Local\Temp\dvc_temp_o11m7wat
