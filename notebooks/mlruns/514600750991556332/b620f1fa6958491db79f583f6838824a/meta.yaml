@@ -1,0 +1,14 @@
+artifact_uri: file:///c:/Users/satya/OneDrive/Desktop/youtube-comment-senitment-analysis/notebooks/mlruns/514600750991556332/b620f1fa6958491db79f583f6838824a/artifacts
+end_time: 1756312468082
+entry_point_name: ''
+experiment_id: '514600750991556332'
+lifecycle_stage: active
+run_id: b620f1fa6958491db79f583f6838824a
+run_name: Trial_19_LightGBM_class_weight_TFIDF_Trigrams
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1756312167182
+status: 3
+tags: []
+user_id: satya
