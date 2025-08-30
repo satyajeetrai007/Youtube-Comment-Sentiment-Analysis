@@ -1,6 +1,2 @@
-[core]
-    remote = origin
-['remote "myremote"']
-    url = C:\Users\satya\AppData\Local\Temp
 ['remote "origin"']
     url = https://dagshub.com/satyajeetrai007/Youtube-Comment-Sentiment-Analysis.dvc
