@@ -1,2 +1,4 @@
+[core]
+    remote = origin
 ['remote "origin"']
     url = https://dagshub.com/satyajeetrai007/Youtube-Comment-Sentiment-Analysis.dvc

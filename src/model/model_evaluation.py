@@ -158,12 +158,11 @@ def main():
                 input_example=input_example  # <--- Added input example
             )
 
-            # Save model info
+            # Save model info so that we can use this info to register model on model registry
             model_path = "stacking_model"
             
             save_model_info(run.info.run_id, model_path, 'experiment_info.json')
 
-            # Log the vectorizer as an artifact
             mlflow.log_artifact(os.path.join(root_dir, 'tfidf_vectorizer.pkl'))
 
             # Evaluate model and get metrics
