@@ -1,14 +1,16 @@
 import mlflow
-from mlflow.tracking import MlflowClient
-import dagshub
+from mlflow.models import Model
 
-dagshub.init(repo_owner='satyajeetrai007', repo_name='Youtube-Comment-Sentiment-Analysis', mlflow=True)
+model_uri = 'runs:/a3fca89ee4514691be8f26e50ace0b7e/lgbm_model'
+# The model is logged with an input example
+pyfunc_model = mlflow.pyfunc.load_model(model_uri)
+input_data = pyfunc_model.input_example
 
-def load_model_from_registry(model_name, model_version):
-    model_uri = f"models:/{model_name}/{model_version}"
-    model = mlflow.pyfunc.load_model(model_uri)
-
-    return model
-
-model = load_model_from_registry("yt_chrome_plugin_model","2")
-print("model loaded successfully")
+# Verify the model with the provided input data using the logged dependencies.
+# For more details, refer to:
+# https://mlflow.org/docs/latest/models.html#validate-models-before-deployment
+mlflow.models.predict(
+    model_uri=model_uri,
+    input_data=input_data,
+    env_manager="uv",
+)
