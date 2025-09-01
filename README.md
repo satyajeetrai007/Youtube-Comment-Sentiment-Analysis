@@ -7,7 +7,7 @@
 Youtube-Comment-Senitment-Analysis
 ==============================
 
-A short description of the project.
+A Chrome plugin to Analyse the comment Sentiment on a YouTube Video
 
 Project Organization
 ------------
