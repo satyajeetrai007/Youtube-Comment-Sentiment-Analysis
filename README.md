@@ -1,3 +1,7 @@
+
+[![Watch the video](https://img.youtube.com/vi/mtfIpluP31E/0.jpg)](https://www.youtube.com/watch?v=mtfIpluP31E)
+
+
 Youtube-Comment-Senitment-Analysis
 ==============================
 
@@ -50,8 +54,3 @@ Project Organization
     │       └── visualize.py
     │
     └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
-
-
---------
-
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
