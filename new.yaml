@@ -1,8 +1,0 @@
-name: CICD Workflow 
-
-on: push
-
-jobs:
-  Practice-setup:
-    runs-on: macos-latest
-    
