@@ -1,7 +1,14 @@
+# Click On thumbnail to Watch Demo
+
+
+https://github.com/user-attachments/assets/4349a233-f25d-4769-9539-8a4db86fa2a4
+
+
+
 Youtube-Comment-Senitment-Analysis
 ==============================
 
-A short description of the project.
+A Chrome plugin to Analyse the comment Sentiment on a YouTube Video
 
 Project Organization
 ------------
@@ -50,8 +57,3 @@ Project Organization
     │       └── visualize.py
     │
     └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
-
-
---------
-
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
