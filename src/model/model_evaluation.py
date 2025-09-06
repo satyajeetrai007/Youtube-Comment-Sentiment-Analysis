@@ -137,6 +137,7 @@ def main():
                 mlflow.log_param(key, value)
             
             model = load_model(os.path.join(root_dir, 'stacking_model.pkl'))
+
             vectorizer = load_vectorizer(os.path.join(root_dir, 'tfidf_vectorizer.pkl'))
 
             test_data = load_data(os.path.join(root_dir, 'data/interim/test_processed.csv'))
@@ -176,6 +177,15 @@ def main():
                         f"test_{label}_recall": metrics['recall'],
                         f"test_{label}_f1-score": metrics['f1-score']
                     })
+
+            # Log overall accuracy separately
+            accuracy = report.get("accuracy", None)
+            if accuracy:
+                mlflow.log_metric("accuracy",accuracy)
+                logger.debug(f"Model accuracy is : {accuracy}")
+            
+
+            
 
             # Log confusion matrix
             log_confusion_matrix(cm, "Test Data")

@@ -116,7 +116,7 @@ def train_stacking_classifier(X_train: np.ndarray, y_train: np.ndarray, params: 
             final_estimator=meta_model,
             cv=stratified_kfold,
             passthrough=False,
-            n_jobs=params.get('n_jobs', 1)
+            n_jobs=params.get('n_jobs', -1)
         )
 
         logger.info("Training Stacking Classifier... This may take a while.")
