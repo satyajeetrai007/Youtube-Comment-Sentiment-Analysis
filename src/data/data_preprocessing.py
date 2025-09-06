@@ -25,9 +25,13 @@ file_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
 logger.addHandler(file_handler)
 
+nltk_data_dir = os.path.join(os.environ.get('GITHUB_WORKSPACE', '.'), 'nltk_data')
 
-nltk.download('wordnet', quiet=True, download_dir='nltk_data')
-nltk.download('stopwords', quiet=True, download_dir='nltk_data')
+nltk.download('wordnet', quiet=True, download_dir=nltk_data_dir)
+nltk.download('stopwords', quiet=True, download_dir=nltk_data_dir)
+
+# Add the new data path to NLTK's search path
+nltk.data.path.append(nltk_data_dir)
 
 def preprocess_comment(comment):
     """Apply preprocessing transformations to a comment."""
