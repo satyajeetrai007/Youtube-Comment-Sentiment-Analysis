@@ -34,11 +34,6 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run Pipeline
-        env:
-    
-        MLFLOW_TRACKING_PASSWORD: ${{ secrets.MLFLOW_TRACKING_PASSWORD }}
-        MLFLOW_TRACKING_USERNAME: ${{ secrets.MLFLOW_TRACKING_USERNAME }}
-        DAGSHUB_TOKEN: ${{ secrets.DAGSHUB_PAT }}
         run: |
           dvc repro
 
