@@ -13,24 +13,20 @@ import seaborn as sns
 import json
 import dagshub
 from mlflow.models import infer_signature
+# Set up DagsHub credentials for MLflow tracking
+dagshub_token = os.getenv("DAGSHUB_PAT")
+if not dagshub_token:
+    raise EnvironmentError("DAGSHUB_PAT environment variable is not set")
 
-dagshub_token = os.environ.get('DAGSHUB_TOKEN')
-if dagshub_token:
-    dagshub.init(
-        repo_owner='satyajeetrai007', 
-        repo_name='Youtube-Comment-Sentiment-Analysis', 
-        mlflow=True,
-        # This parameter is crucial for non-interactive authentication
-        auth_token=dagshub_token
-    )
-else:
-    # Fallback for local, interactive sessions
-    dagshub.init(
-        repo_owner='satyajeetrai007', 
-        repo_name='Youtube-Comment-Sentiment-Analysis', 
-        mlflow=True
-    )
+os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
+os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
 
+dagshub_url = "https://dagshub.com"
+repo_owner = "satyajeetrai007"
+repo_name = "Youtube-Comment-Sentiment-Analysis"
+
+# Set up MLflow tracking URI
+mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')
 
 logger = logging.getLogger('model_evaluation')
 logger.setLevel('DEBUG')
@@ -200,7 +196,6 @@ def main():
             if accuracy:
                 mlflow.log_metric("accuracy",accuracy)
                 logger.debug(f"Model accuracy is : {accuracy}")
-            
             
 
             
