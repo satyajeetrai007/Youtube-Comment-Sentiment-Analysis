@@ -30,13 +30,13 @@ jobs:
 
       - name: Run Pipeline
         env:
-        DVC_SECRET_ACCESS_KEY: ${{ secrets.DAGSHUB_PAT }}
-        MLFLOW_TRACKING_USERNAME: "satyajeetrai007"
-        MLFLOW_TRACKING_PASSWORD: ${{ secrets.DAGSHUB_PAT }}
-        DVC_ACCESS_KEY_ID: ${{ secrets.DAGSHUB_PAT }}
-        MLFLOW_TRACKING_URI: 'https://dagshub.com/satyajeetrai007/Youtube-Comment-Sentiment-Analysis.mlflow'
-        DAGSHUB_PAT: ${{ secrets.DAGSHUB_PAT }}
-        DVC_REMOTE_URL: 'https://dagshub.com/satyajeetrai007/Youtube-Comment-Sentiment-Analysis.dvc'
+          DVC_SECRET_ACCESS_KEY: ${{ secrets.DAGSHUB_PAT }}
+          MLFLOW_TRACKING_USERNAME: "satyajeetrai007"
+          MLFLOW_TRACKING_PASSWORD: ${{ secrets.DAGSHUB_PAT }}
+          DVC_ACCESS_KEY_ID: ${{ secrets.DAGSHUB_PAT }}
+          MLFLOW_TRACKING_URI: 'https://dagshub.com/satyajeetrai007/Youtube-Comment-Sentiment-Analysis.mlflow'
+          DAGSHUB_PAT: ${{ secrets.DAGSHUB_PAT }}
+          DVC_REMOTE_URL: 'https://dagshub.com/satyajeetrai007/Youtube-Comment-Sentiment-Analysis.dvc'
         run: |
           dvc repro
 
