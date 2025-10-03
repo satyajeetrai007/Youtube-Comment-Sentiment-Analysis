@@ -37,9 +37,6 @@ jobs:
           pip install dvc[s3]
           pip install -r requirements.txt
 
-      - name: Pull DVC-tracked data
-        run: dvc pull
-
       - name: Run Pipeline
         run: dvc repro
 
