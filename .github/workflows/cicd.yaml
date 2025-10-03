@@ -5,7 +5,16 @@ on: push
 jobs:
   model-deployment:
     runs-on: ubuntu-latest
-    
+
+    env:
+      DAGSHUB_PAT: ${{ secrets.DAGSHUB_PAT }}
+      DVC_SECRET_ACCESS_KEY: ${{ secrets.DAGSHUB_PAT }}
+      DVC_ACCESS_KEY_ID: ${{ secrets.DAGSHUB_PAT }}
+      MLFLOW_TRACKING_USERNAME: ${{ secrets.DAGSHUB_PAT }}
+      MLFLOW_TRACKING_PASSWORD: ${{ secrets.DAGSHUB_PAT }}
+      MLFLOW_TRACKING_URI: 'https://dagshub.com/satyajeetrai007/Youtube-Comment-Sentiment-Analysis.mlflow'
+      DVC_REMOTE_URL: 'https://dagshub.com/satyajeetrai007/Youtube-Comment-Sentiment-Analysis.dvc'
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -19,7 +28,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt')}}
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip
 
@@ -28,21 +37,14 @@ jobs:
           pip install dvc[s3]
           pip install -r requirements.txt
 
+      - name: Pull DVC-tracked data
+        run: dvc pull
+
       - name: Run Pipeline
-        env:
-          DVC_SECRET_ACCESS_KEY: ${{ secrets.DAGSHUB_PAT }}
-          MLFLOW_TRACKING_USERNAME: "satyajeetrai007"
-          MLFLOW_TRACKING_PASSWORD: ${{ secrets.DAGSHUB_PAT }}
-          DVC_ACCESS_KEY_ID: ${{ secrets.DAGSHUB_PAT }}
-          MLFLOW_TRACKING_URI: 'https://dagshub.com/satyajeetrai007/Youtube-Comment-Sentiment-Analysis.mlflow'
-          DAGSHUB_PAT: ${{ secrets.DAGSHUB_PAT }}
-          DVC_REMOTE_URL: 'https://dagshub.com/satyajeetrai007/Youtube-Comment-Sentiment-Analysis.dvc'
-        run: |
-          dvc repro
+        run: dvc repro
 
       - name: Push DVC-tracked data to remote
-        run: |
-          dvc push
+        run: dvc push
 
       - name: Configure Git
         run: |
@@ -50,11 +52,11 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Add changes to Git
-        run: |
-          git add .
+        run: git add .
 
       - name: Commit changes
         if: github.actor != 'github-actions[bot]'
+        continue-on-error: true
         run: |
           git commit -m "Automated commit of DVC outputs and updated code" || echo "No changes to commit"
 
@@ -62,5 +64,4 @@ jobs:
         if: github.actor != 'github-actions[bot]'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git push origin ${{ github.ref_name }}
+        run: git push origin ${{ github.ref_name }}
