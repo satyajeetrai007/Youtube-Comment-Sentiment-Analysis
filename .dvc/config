@@ -4,5 +4,3 @@
 
 ['remote "origin"']
     url = https://dagshub.com/satyajeetrai007/Youtube-Comment-Sentiment-Analysis.dvc
-    access_key_id = ${DVC_ACCESS_KEY_ID}
-    secret_access_key = ${DVC_SECRET_ACCESS_KEY}
