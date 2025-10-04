@@ -40,16 +40,25 @@ jobs:
       - name: Run Pipeline
         run: dvc repro
 
-      - name: Push DVC-tracked data to remote
-        run: dvc push
-
       - name: Configure Git
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
+      - name: Configure DVC remote
+        run: |
+          dvc remote modify origin url $DVC_REMOTE_URL
+          dvc remote modify origin access_key_id $DVC_ACCESS_KEY_ID
+          dvc remote modify origin secret_access_key $DVC_SECRET_ACCESS_KEY
+
+      - name: Show DVC status against remote
+        run: dvc status -c
+
       - name: Add changes to Git
         run: git add .
+
+      - name: Push DVC-tracked data to remote
+        run: dvc push
 
       - name: Commit changes
         if: github.actor != 'github-actions[bot]'
